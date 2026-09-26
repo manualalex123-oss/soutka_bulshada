@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="so">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sautka Bulshada - Shabakada Cabashooyinka</title>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          emailjs.init("QO0nehoobfSAU-nYf");
+       })();
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --accent: #06b6d4;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --success: #10b981;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.12) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.12) 0px, transparent 50%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+            padding: 1.2rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: var(--primary);
+            -webkit-text-fill-color: initial;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #475569;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+            background: rgba(79, 70, 229, 0.08);
+        }
+
+        .hero {
+            padding: 140px 20px 40px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--primary);
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(79, 70, 229, 0.2);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.2rem;
+            color: #0f172a;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: #64748b;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto 6rem;
+            padding: 0 20px;
+        }
+
+        .form-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #334155;
+        }
+
+        .form-group label i {
+            color: var(--primary);
+            font-size: 1rem;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper input, 
+        .input-wrapper select, 
+        .input-wrapper textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(248, 250, 252, 0.9);
+            border: 1.5px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            color: #0f172a;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .input-wrapper input:focus, 
+        .input-wrapper select:focus, 
+        .input-wrapper textarea:focus {
+            background: #ffffff;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--primary), #6366f1);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.4);
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px rgba(79, 70, 229, 0.5);
+        }
+
+        .success-message {
+            display: none;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #166534;
+            padding: 24px;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 1.5rem;
+            animation: slideUp 0.4s ease-out;
+        }
+
+        .success-message i {
+            font-size: 2.8rem;
+            color: var(--success);
+            margin-bottom: 10px;
+        }
+
+        .success-message p {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            text-align: center;
+            padding: 2.5rem;
+            color: #64748b;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-group.full-width { grid-column: span 1; }
+            .form-card { padding: 1.8rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="navbar">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-bullhorn"></i> Sautka Bulshada
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home"><i class="fa-solid fa-house"></i> Hoyga</a></li>
+                <li><a href="#gudbi"><i class="fa-solid fa-paper-plane"></i> Gudbi Cabasho</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-badge">
+            <i class="fa-solid fa-shield-halved"></i> Adeeg Bulsho oo Fudud
+        </div>
+        <h1>Mawqifkaaga Iyo Codkaaga <span>Waa Muhiim</span></h1>
+        <p>Gudbi cabashadaada ama baahida ka jirta deegaankaaga si wadajir ah loogu helo xallin maamul iyo bulsho.</p>
+    </section>
+
+    <!-- Form Section -->
+    <section class="container" id="gudbi">
+        <div class="form-card">
+            <h2 class="form-title">
+                <i class="fa-solid fa-file-pen"></i> Gudbi Cabashadaada
+            </h2>
+
+            <!-- Form Start -->
+            <form id="complaintForm">
+                <div class="form-grid">
+
+                    <!-- Magaca -->
+                    <div class="form-group">
+                        <label for="name">
+                            <i class="fa-solid fa-user"></i> Magacaaga (Ikhtiyaari)
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="text" id="name" placeholder="Magaca oo buuxa">
+                        </div>
+                    </div>
+
+                    <!-- Degmada -->
+                    <div class="form-group">
+                        <label for="location">
+                            <i class="fa-solid fa-location-dot"></i> Degmada / Deegaanka
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="text" id="location" placeholder="Sida: Hodan, Garowe..." required>
+                        </div>
+                    </div>
+
+                    <!-- Nooca Cabashada -->
+                    <div class="form-group full-width">
+                        <label for="category">
+                            <i class="fa-solid fa-layer-group"></i> Nooca Cabashada
+                        </label>
+                        <div class="input-wrapper">
+                            <select id="category" required>
+                                <option value="">Dooro Nooca Cabashada...</option>
+                                <option value="Nabadgelyada & Amniga">🛡️ Nabadgelyada & Amniga</option>
+                                <option value="Biyo L'aan ama Wasakhow">💧 Biyo L'aan ama Wasakhow</option>
+                                <option value="Koronto">⚡ Koronto</option>
+                                <option value="Waddooyinka & Jidadka">🛣️ Waddooyinka & Jidadka</option>
+                                <option value="Caafimaadka">🏥 Caafimaadka & Faydho-dhawrka</option>
+                                <option value="Waxbarashada">🎓 Waxbarashada</option>
+                                <option value="Kee Kale">❓ Kee Kale</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Faahfaahinta -->
+                    <div class="form-group full-width">
+                        <label for="details">
+                            <i class="fa-solid fa-comment-dots"></i> Faahfaahinta Cabashada
+                        </label>
+                        <div class="input-wrapper">
+                            <textarea id="details" rows="4" placeholder="Si faahfaahsan uga warram dhibaatada..." required></textarea>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="submitBtn" class="btn-primary">
+                    <i class="fa-solid fa-paper-plane"></i> Gudbi Cabashada
+                </button>
+            </form>
+
+            <!-- Success Message -->
+            <div id="successMsg" class="success-message">
+                <i class="fa-solid fa-circle-check"></i>
+                <p>Waad ku mahadsantahay! Cabashadaada waa la helay, e-mail-kana waa loo diray maamulka.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Sautka Bulshada. Dhamaan xaqqa waa dhowran yahay.</p>
+    </footer>
+
+    <!-- JavaScript code -->
+    <script>
+        const complaintForm = document.getElementById('complaintForm');
+        const successMsg = document.getElementById('successMsg');
+        const submitBtn = document.getElementById('submitBtn');
+
+        complaintForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Beddel badhanka inta ay dirayso
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Waa la dirayaa...';
+            submitBtn.disabled = true;
+
+            // Diyaari xogta loo dirayo EmailJS Template
+            const templateParams = {
+                from_name: document.getElementById('name').value || "Muwaadin Unnamed",
+                location: document.getElementById('location').value,
+                category: document.getElementById('category').value,
+                message: document.getElementById('details').value
+            };
+
+            // Dirida Email-ka
+            emailjs.send('service_xckr3si', 'template_bk4prkg', templateParams)
+                .then(function(response) {
+                    successMsg.style.display = 'block';
+                    complaintForm.reset();
+
+                    submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Gudbi Cabashada';
+                    submitBtn.disabled = false;
+
+                    setTimeout(() => {
+                        successMsg.style.display = 'none';
+                    }, 6000);
+                }, function(error) {
+                    alert('Qudbo ama fariin dirista waa la waayay. Fadlan dib u eeg internet-kaaga.');
+                    console.error('EmailJS Error:', error);
+
+                    submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Gudbi Cabashada';
+                    submitBtn.disabled = false;
+                });
+        });
+    </script>
+</body>
+</html>
